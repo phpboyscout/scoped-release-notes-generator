@@ -18,6 +18,7 @@ const debug = debugFactory("semantic-release:release-notes-generator");
  * @param {Object} pluginConfig The plugin configuration.
  * @param {String} pluginConfig.preset conventional-changelog preset ('angular', 'atom', 'codemirror', 'ember', 'eslint', 'express', 'jquery', 'jscs', 'jshint').
  * @param {String} pluginConfig.config Requireable npm package with a custom conventional-changelog preset
+ * @param {String} pluginConfig.scope the scope to target for generating release.
  * @param {Object} pluginConfig.parserOpts Additional `conventional-changelog-parser` options that will overwrite ones loaded by `preset` or `config`.
  * @param {Object} pluginConfig.writerOpts Additional `conventional-changelog-writer` options that will overwrite ones loaded by `preset` or `config`.
  * @param {Object} context The semantic-release context.
@@ -57,6 +58,12 @@ export async function generateNotes(pluginConfig, context) {
         ...rawCommit,
         ...parser(rawCommit.message, { referenceActions, issuePrefixes, ...parserOpts }),
       }))
+      .filter((commit) => {
+        if (pluginConfig.scope != undefined && commit.scope != pluginConfig.scope) {
+          return false
+        }
+        return true
+      })
   );
   const previousTag = lastRelease.gitTag || lastRelease.gitHead;
   const currentTag = nextRelease.gitTag || nextRelease.gitHead;

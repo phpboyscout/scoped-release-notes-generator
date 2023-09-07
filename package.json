@@ -1,6 +1,6 @@
 {
-  "name": "@semantic-release/release-notes-generator",
-  "description": "semantic-release plugin to generate changelog content with conventional-changelog",
+  "name": "@phpboyscout/scoped-release-notes-generator",
+  "description": "a modified version of the @semantic-release/release-notes-generator plugin to generate changelog content with conventional-changelog for targetted scopes",
   "version": "0.0.0-development",
   "author": "Pierre Vanduynslager (https://twitter.com/@pvdlg_)",
   "bugs": {
