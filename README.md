@@ -32,7 +32,7 @@ The plugin can be configured in the [**semantic-release** configuration file](ht
       }
     ],
     [
-      "@semantic-release/release-notes-generator",
+      "@phpboyscout/scoped-release-notes-generator",
       {
         "preset": "angular",
         "scope": "frontend",
